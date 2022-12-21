@@ -1,0 +1,47 @@
+<div>
+    <h1 mat-dialog-title>Artículo</h1>
+    <div mat-dialog-content>
+        <div style="display: flex;flex-direction: column; margin:1rem auto; max-width: 600px; padding: 1rem;">
+            <form [formGroup]="formularioRegistro">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput formControlName = "inpName" type="text" placeholder="Ingrese Nombre">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field>
+                            <input matInput formControlName = "inpApellido" type="text" placeholder="Ingrese apellido">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"> 
+                        <mat-form-field appearance="fill">
+                            <mat-label>Seleccione pais</mat-label>
+                            <mat-select formControlName = "cbxPais">
+                            <mat-option>None</mat-option>
+                            <mat-option *ngFor="let pais of arrayPaises" [value]="pais.paisid">
+                                {{ pais.name }}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Fecha Nacimiento</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName = "inpFechaNac">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="cancelar()">Cancelar</button>
+        <button type="submit" mat-button [mat-dialog-close]="formularioRegistro.value" cdkFocusInitial>Confirmar</button>
+    </div>
+</div>
